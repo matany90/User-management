@@ -26,7 +26,8 @@ export const store = new Vuex.Store({
             commit('addUser', payload);
         },
         fetchUsers: async ({ commit }) => {
-            const { data } = await axios.get('http://localhost:5000/api/users');
+            const { data } = await axios.get('/api/users');
+            console.log(data);
             commit('fetchUsers', data.users)   
         }
     }
