@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -24,8 +25,9 @@ export const store = new Vuex.Store({
         addUser: ({ commit }, payload) => {
             commit('addUser', payload);
         },
-        fetchUsers: ({ commit }) => {
-            commit('fetchUsers', ['test','test'])
+        fetchUsers: async ({ commit }) => {
+            const { data } = await axios.get('http://localhost:5000/api/users');
+            commit('fetchUsers', data.users)   
         }
     }
 })

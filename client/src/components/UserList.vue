@@ -6,6 +6,7 @@
         </li>
     </ul>
         <button @click="addUser('shiri')">Button</button>
+        <a href="/api/users">test</a>
 </div>
 </template>
 
