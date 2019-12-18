@@ -5,20 +5,26 @@
             {{user}}
         </li>
     </ul>
-    <app-test></app-test>
+        <button @click="addUser('shiri')">Button</button>
 </div>
 </template>
 
 <script>
-import Test from './Test.vue';
-import { mapGetters } from 'vuex';
+import { mapMutations, mapActions, mapGetters } from 'vuex';
 
 export default {
-    components: {
-        'app-test': Test
+    created() {
+        this.fetchUsers()
     },
-    computed: {...mapGetters([
+    computed: {
+        ...mapGetters([
         'users'
+     ])
+    },
+    methods: {
+        ...mapActions([
+         'addUser',
+         'fetchUsers'
      ])
     }
 }

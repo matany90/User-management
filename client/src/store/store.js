@@ -13,8 +13,19 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        addUser: state => {
-            state.users.push('test')
+        addUser: (state, payload) => {
+            state.users.push(payload)
+        },
+        fetchUsers: (state, users) => {
+            state.users = users;
+        }
+    },
+    actions: {
+        addUser: ({ commit }, payload) => {
+            commit('addUser', payload);
+        },
+        fetchUsers: ({ commit }) => {
+            commit('fetchUsers', ['test','test'])
         }
     }
 })
