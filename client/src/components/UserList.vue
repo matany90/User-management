@@ -13,13 +13,16 @@
       <thead>
         <tr>
           <th class="text-left">Name</th>
-          <th class="text-left">Calories</th>
+          <th class="text-left">Email</th>
+          <th class="text-left">Phone</th>
+          <th class="text-left"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(user, index) in users" :key="index">
-          <td>{{ user }}</td>
-          <!-- <td>{{ item.calories }}</td> -->
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
         </tr>
       </tbody>
     </template>

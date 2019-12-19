@@ -1,12 +1,13 @@
-const path = require('path');
-
 module.exports = {
-    outputDir: path.resolve(__dirname, '../server/public'),
-    devServer: {
-      proxy: {
-        '/api/*': {
-          target: 'http://localhost:5000'
-        }
+  "outputDir": "C:\\Users\\matan\\Desktop\\Comp\\Vue js\\ReleAi-Project\\server\\public",
+  "devServer": {
+    "proxy": {
+      "/api/*": {
+        "target": "http://localhost:5000"
       }
     }
-  }
+  },
+  "transpileDependencies": [
+    "vuetify"
+  ]
+}

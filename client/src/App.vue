@@ -1,11 +1,20 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <v-app>
+    <ToolBar />
+    <v-content>
+      <UserList />
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-</script>
+ import UserList from './components/UserList.vue';
+ import ToolBar from './components/ToolBar.vue';
 
-<style>
-</style>
+export default {
+  components: {
+    UserList,
+    ToolBar
+  },
+};
+</script>
