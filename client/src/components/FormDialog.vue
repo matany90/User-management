@@ -3,7 +3,7 @@
     <v-dialog v-model="isDialogVisible" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="headline">Add User</span>
+          <span class="headline">{{loadTitle()}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -28,7 +28,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="toggleDialogVisible()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="addUser({name, phone, email})" :disabled="email === '' || phone === '' || name === '' ">Save User</v-btn>
+          <v-btn color="blue darken-1" text @click="submitForm({name, phone, email, id})/*addUser({name, phone, email})*/" :disabled="email === '' || phone === '' || name === '' ">Save User</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -41,9 +41,18 @@ import { mapActions, /*mapGetters,*/ /*mapMutations*/ } from 'vuex';
     methods: {
     ...mapActions([
         'toggleDialogVisible',
-        'addUser'
+        'addUser',
+        'updateUser'
      ]),
-
+      submitForm(user) {
+        user.id === '' ? this.addUser(user) : this.updateUser(user);
+      },
+      loadTitle() {
+        const { id } = this.$store.state
+        let title;
+         id === '' ? title = 'Add User' :  title = 'Update User';
+         return title;
+      }
     },
     computed: {
      isDialogVisible: {
@@ -73,6 +82,14 @@ import { mapActions, /*mapGetters,*/ /*mapMutations*/ } from 'vuex';
         },
         get() {
             return this.$store.state.phone;
+        }
+     },
+    id: {
+        set(id) {
+            this.$store.commit('setId', id)
+        },
+        get() {
+            return this.$store.state.id;
         }
      },
 

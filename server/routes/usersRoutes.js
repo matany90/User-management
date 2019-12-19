@@ -29,4 +29,16 @@ module.exports = (app) => {
         }
         return res.send({ error: ERROR_MSG })
     })
+
+    app.post('/api/users/deleteUser', async (req, res) => {
+        const { id } = req.body.user;
+        const responseDb = await db.collection('users').doc(id).delete();
+        res.send({ responseDb })
+    })
+
+    app.post('/api/users/updateUser', async (req, res) => {
+        const { id, name, email, phone } = req.body.user;
+        const responseDb = await db.collection('users').doc(id).update('name', name, 'email', email, 'phone', phone);
+        res.send({ responseDb })
+    })
 }
