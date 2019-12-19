@@ -8,7 +8,8 @@ module.exports = (app) => {
     app.get('/api/users', async (req, res) => {
         const snapshot = await db.collection('users').get()
         if (snapshot) {
-            //Adding doc-firestore-id to each element to filter correctly when deleting/editing
+            /* Adding doc-firestore-id to each element
+             to filter correctly when deleting/editing*/
             const users =  snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
             return res.send({ users })
         }
