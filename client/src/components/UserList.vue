@@ -1,5 +1,5 @@
 <template>
-<div>
+<!-- <div>
     <ul>
         <li v-for="(user, index) in users" v-bind:key="index">
             {{user}}
@@ -7,7 +7,23 @@
     </ul>
         <button @click="addUser('shiri')">Button</button>
         <a href="/api/users">test</a>
-</div>
+</div> -->
+  <v-simple-table>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">Name</th>
+          <th class="text-left">Calories</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(user, index) in users" :key="index">
+          <td>{{ user }}</td>
+          <!-- <td>{{ item.calories }}</td> -->
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
 </template>
 
 <script>

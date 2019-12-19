@@ -8,6 +8,7 @@ import { store } from './store/store';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+
 const router = new VueRouter({
   routes
 })
