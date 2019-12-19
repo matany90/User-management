@@ -1,6 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const admin = require('firebase-admin');
+const serviceAccount = require('./rele-ai-project-firebase-adminsdk.json');
+
+//init firestore
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://rele-ai-project.firebaseio.com"
+})
 
 //express app instance
 const app = express();
