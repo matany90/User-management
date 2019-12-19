@@ -8,6 +8,7 @@
         <button @click="addUser('shiri')">Button</button>
         <a href="/api/users">test</a>
 </div> -->
+<div>
   <v-simple-table>
     <template v-slot:default>
       <thead>
@@ -27,14 +28,20 @@
       </tbody>
     </template>
   </v-simple-table>
+  <FormDialog />
+  </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import FormDialog from './FormDialog.vue';
 
 export default {
     created() {
         this.fetchUsers()
+    },
+    components: {
+      FormDialog
     },
     computed: {
         ...mapGetters([

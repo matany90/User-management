@@ -6,12 +6,18 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        users: ['Matan', 'Shiri']
+        users: [],
+        isDialogVisible: false,
+        name: '',
+        email: '',
+        phone: ''
     },
     getters: {
-        users: state => {
-            return state.users;
-        }
+        users: ({ users }) => ( users ),
+        isDialogVisible: ({ isDialogVisible }) => ( isDialogVisible ),
+        // name: ({ name }) => ( name ),
+        // email: ({ email }) => ( email ),
+        // phone: ({ phone }) => ( phone ),
     },
     mutations: {
         addUser: (state, payload) => {
@@ -19,16 +25,27 @@ export const store = new Vuex.Store({
         },
         fetchUsers: (state, users) => {
             state.users = users;
-        }
+        },
+        toggleDialogVisible: (state) => {
+            state.isDialogVisible = !state.isDialogVisible;
+        },
+        setName: (state, name) => { state.name = name; },
+        setEmail: (state, email) => { state.email = email; },
+        setPhone: (state, phone) => { state.phone = phone; }
     },
     actions: {
-        addUser: ({ commit }, payload) => {
+        addUser: async ({ commit }, payload) => {
+            const res = await axios.post('/api/users/addUser', { user: payload })
+            console.log(res);
             commit('addUser', payload);
+            commit('toggleDialogVisible');
         },
         fetchUsers: async ({ commit }) => {
             const { data } = await axios.get('/api/users');
-            console.log(data);
             commit('fetchUsers', data.users)   
+        },
+        toggleDialogVisible: ({ commit }) => {
+            commit('toggleDialogVisible');
         }
     }
 })
