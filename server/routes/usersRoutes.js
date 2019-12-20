@@ -1,8 +1,10 @@
 
 const admin = require('firebase-admin');
+const _ = require('lodash');
 const db = admin.firestore();
 
 const ERROR_MSG = 'Error. There is a server problem, please try again later';
+const ERROR_UPDATE_USER = 'User has not changed! '
 
 module.exports = (app) => {
     app.get('/api/users', async (req, res) => {
@@ -32,13 +34,22 @@ module.exports = (app) => {
 
     app.post('/api/users/deleteUser', async (req, res) => {
         const { id } = req.body.user;
-        const responseDb = await db.collection('users').doc(id).delete();
-        res.send({ responseDb })
+        //delete by user id
+        await db.collection('users').doc(id).delete();
+        //check if deleted successfully
+        const doc = await db.collection('users').doc(id).get();
+        doc.exists ? res.send({ error: ERROR_MSG, isSuccess: false }) : res.send({ user: req.body.user, isSuccess: true })
     })
 
     app.post('/api/users/updateUser', async (req, res) => {
-        const { id, name, email, phone } = req.body.user;
-        const responseDb = await db.collection('users').doc(id).update('name', name, 'email', email, 'phone', phone);
-        res.send({ responseDb })
+        const { user } = req.body;
+        //update by user id
+        await db.collection('users').doc(user.id).update('name', user.name, 'email', user.email, 'phone', user.phone);
+        //pull updated user
+        const doc = await db.collection('users').doc(user.id).get();
+        const updatedUser = {...doc.data(), id: user.id };
+        //check if updated successfully
+        const isSuccess = _.isEqual(updatedUser, user);
+        isSuccess ? res.send({ user: updatedUser, isSuccess }) : res.send({ error: ERROR_UPDATE_USER, isSuccess })
     })
 }

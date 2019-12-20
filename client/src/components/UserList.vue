@@ -51,7 +51,8 @@ export default {
         ...mapActions([
          'fetchUsers',
          'deleteUser',
-         'toggleDialogVisible'
+         'toggleDialogVisible',
+         'updateUser'
      ]),
     }
 }
