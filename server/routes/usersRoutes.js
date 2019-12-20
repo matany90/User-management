@@ -8,6 +8,7 @@ const ERROR_UPDATE_USER = 'User has not changed! '
 const ERROR_ADD_USER = 'Error adding user!'
 
 module.exports = (app) => {
+    /** FETCH USERS endpoint  **/
     app.get('/api/users', async (req, res) => {
         const snapshot = await db.collection('users').get()
         /* Adding doc-firestore-id to each element
@@ -19,6 +20,7 @@ module.exports = (app) => {
         return res.send({ error: ERROR_MSG, isSuccess: false })
     })
 
+    /** ADD USER endpoint  **/
     app.post('/api/users/addUser', async (req, res) => {
         const { name, email, phone } = req.body.user;
         //add user
@@ -34,6 +36,7 @@ module.exports = (app) => {
         isSuccess ? res.send({ user: {...doc.data(), id: doc.id }, isSuccess }) : res.send({ error: ERROR_ADD_USER, isSuccess })
     })
 
+    /** DELETE USER endpoint **/
     app.post('/api/users/deleteUser', async (req, res) => {
         const { id } = req.body.user;
         //delete by user id
@@ -43,6 +46,7 @@ module.exports = (app) => {
         doc.exists ? res.send({ error: ERROR_MSG, isSuccess: false }) : res.send({ user: req.body.user, isSuccess: true })
     })
 
+    /** UPDATE USER endpoint **/
     app.post('/api/users/updateUser', async (req, res) => {
         const { user } = req.body;
         //update by user id
