@@ -5,31 +5,33 @@ const db = admin.firestore();
 
 const ERROR_MSG = 'Error. There is a server problem, please try again later';
 const ERROR_UPDATE_USER = 'User has not changed! '
+const ERROR_ADD_USER = 'Error adding user!'
 
 module.exports = (app) => {
     app.get('/api/users', async (req, res) => {
         const snapshot = await db.collection('users').get()
+        /* Adding doc-firestore-id to each element
+        to filter correctly when deleting/editing */
         if (snapshot) {
-            /* Adding doc-firestore-id to each element
-             to filter correctly when deleting/editing*/
             const users =  snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            return res.send({ users })
+            return res.send({ users, isSuccess: true })
         }
-        return res.send({ error: ERROR_MSG })
+        return res.send({ error: ERROR_MSG, isSuccess: false })
     })
 
     app.post('/api/users/addUser', async (req, res) => {
         const { name, email, phone } = req.body.user;
-
-        const responseDb = await db.collection('users').add({
+        //add user
+        const response = await db.collection('users').add({
             name,
             email,
             phone
         })
-        if (responseDb) {
-            return res.send({ responseDb });
-        }
-        return res.send({ error: ERROR_MSG })
+        //pull new user
+        const doc = await db.collection('users').doc(response.id).get();
+        //check if added successfully
+        const isSuccess = doc.id === response.id;
+        isSuccess ? res.send({ user: {...doc.data(), id: doc.id }, isSuccess }) : res.send({ error: ERROR_ADD_USER, isSuccess })
     })
 
     app.post('/api/users/deleteUser', async (req, res) => {

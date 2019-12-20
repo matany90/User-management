@@ -23,27 +23,24 @@ export const store = new Vuex.Store({
         // phone: ({ phone }) => ( phone ),
     },
     mutations: {
-        addUser: (state, user) => {
-            state.users.push(user)
-        },
-        fetchUsers: (state, users) => {
-            state.users = users;
-        },
-        toggleDialogVisible: (state) => {
-            state.isDialogVisible = !state.isDialogVisible;
-        },
-        setName: (state, name) => { state.name = name; },
-        setEmail: (state, email) => { state.email = email; },
-        setPhone: (state, phone) => { state.phone = phone; },
-        setId: (state, id) => { state.id = id; },
-        setError: (state, error) => ( state.error = error )
+        addUser: (state, user) => state.users.push(user),
+        fetchUsers: (state, users) => state.users = users,
+        toggleDialogVisible: (state) => state.isDialogVisible = !state.isDialogVisible,
+        setName: (state, name) => state.name = name,
+        setEmail: (state, email) => state.email = email,
+        setPhone: (state, phone) => state.phone = phone,
+        setId: (state, id) => state.id = id,
+        setError: (state, error) => state.error = error
     },
     actions: {
         addUser: async ({ commit }, payload) => {
-            const res = await axios.post('/api/users/addUser', { user: payload })
-            if (res) {
-                commit('addUser', payload);
+            const { data } = await axios.post('/api/users/addUser', { user: payload })
+            if (data.isSuccess) {
+                commit('addUser', data.user);
                 commit('toggleDialogVisible');
+            }
+            else {
+                commit('setError', data.error)
             }
         },
         updateUser: async ({ commit, state }, payload) => {
@@ -55,9 +52,9 @@ export const store = new Vuex.Store({
             }
         },
         fetchUsers: async ({ commit }) => {
-            const res = await axios.get('/api/users');
-            if (res) {
-                commit('fetchUsers', res.data.users) 
+            const { data } = await axios.get('/api/users');
+            if (data.isSuccess) {
+                commit('fetchUsers', data.users) 
             }  
         },
         toggleDialogVisible: ({ commit }, payload) => {
@@ -70,7 +67,7 @@ export const store = new Vuex.Store({
         deleteUser: async ({ commit, state }, payload) => {
             const { data: { user, isSuccess, error }} = await axios.post('/api/users/deleteUser', { user: payload })
             if (isSuccess) {
-                //delete user locally - replace delete element with undefined and than delete undefined from array
+                //delete user locally - replace deleted user with undefined and than delete undefineds from array
                 const users = state.users.map(el => el.id === user.id ? undefined : el).filter(el => el !== undefined);
                 commit('fetchUsers', users);
             }
