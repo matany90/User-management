@@ -17,10 +17,10 @@ export const store = new Vuex.Store({
     getters: {
         users: ({ users }) => ( users ),
         isDialogVisible: ({ isDialogVisible }) => ( isDialogVisible ),
-        id: ({ id }) => ( id )
-        // name: ({ name }) => ( name ),
-        // email: ({ email }) => ( email ),
-        // phone: ({ phone }) => ( phone ),
+        id: ({ id }) => ( id ),
+        name: ({ name }) => ( name ),
+        email: ({ email }) => ( email ),
+        phone: ({ phone }) => ( phone ),
     },
     mutations: {
         addUser: (state, user) => state.users.push(user),
@@ -33,6 +33,7 @@ export const store = new Vuex.Store({
         setError: (state, error) => state.error = error
     },
     actions: {
+        //ADD USER - post req to API
         addUser: async ({ commit }, payload) => {
             const { data } = await axios.post('/api/users/addUser', { user: payload })
             if (data.isSuccess) {
@@ -43,6 +44,7 @@ export const store = new Vuex.Store({
                 commit('setError', data.error)
             }
         },
+        //UPDATE USER - post req to API
         updateUser: async ({ commit, state }, payload) => {
             const { data } = await axios.post('/api/users/updateUser', { user: payload })
             if (data.isSuccess) {
@@ -51,12 +53,14 @@ export const store = new Vuex.Store({
                 commit('toggleDialogVisible');
             }
         },
+         //FETCH USERS FROM FIRESTORE - get req to API
         fetchUsers: async ({ commit }) => {
             const { data } = await axios.get('/api/users');
             if (data.isSuccess) {
                 commit('fetchUsers', data.users) 
             }  
         },
+        //TOGGELE FORM VISABILITY - reset fields if ADD USER FORM, else it's UPDATE USER 
         toggleDialogVisible: ({ commit }, payload) => {
             commit('setName', payload ? payload.name : '')
             commit('setEmail', payload ? payload.email : '')
@@ -64,6 +68,7 @@ export const store = new Vuex.Store({
             commit('setId', payload ? payload.id: '')
             commit('toggleDialogVisible');
         },
+        //DELETE USER - post req to API
         deleteUser: async ({ commit, state }, payload) => {
             const { data: { user, isSuccess, error }} = await axios.post('/api/users/deleteUser', { user: payload })
             if (isSuccess) {

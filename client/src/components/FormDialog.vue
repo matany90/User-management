@@ -28,7 +28,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="toggleDialogVisible()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="submitForm({name, phone, email, id})/*addUser({name, phone, email})*/" :disabled="email === '' || phone === '' || name === '' ">Save User</v-btn>
+          <v-btn color="blue darken-1" text @click="submitForm()" :disabled="isDisable()">Save User</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapActions, /*mapGetters,*/ /*mapMutations*/ } from 'vuex';
+import { mapActions } from 'vuex';
   export default {
     methods: {
     ...mapActions([
@@ -44,16 +44,26 @@ import { mapActions, /*mapGetters,*/ /*mapMutations*/ } from 'vuex';
         'addUser',
         'updateUser'
      ]),
-      submitForm(user) {
+     //on Add/Edit submit form
+      submitForm() {
+        const { name, phone, email, id } = this.$store.state;
+        const user = { name, phone, email, id }
         user.id === '' ? this.addUser(user) : this.updateUser(user);
       },
+      //load title depends on id existing
       loadTitle() {
         const { id } = this.$store.state
         let title;
          id === '' ? title = 'Add User' :  title = 'Update User';
          return title;
+      },
+      //check if submit form button need to be disable/enable
+      isDisable() {
+        const { name, phone, email } = this.$store.state;
+        return ( email === '' || phone === '' || name === '' )
       }
     },
+    //getters and setters
     computed: {
      isDialogVisible: {
        get() {
@@ -92,7 +102,6 @@ import { mapActions, /*mapGetters,*/ /*mapMutations*/ } from 'vuex';
             return this.$store.state.id;
         }
      },
-
     },
   }
 </script>
