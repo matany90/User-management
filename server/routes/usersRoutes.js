@@ -7,7 +7,7 @@ const db = admin.firestore();
 module.exports = (app) => {
     /** FETCH USERS endpoint  **/
     app.get('/api/users', async (req, res) => {
-        let users;
+        let users = [];
         try {
             const snapshot = await db.collection('users').get()
             /* Adding doc-firestore-id to each element
@@ -15,7 +15,7 @@ module.exports = (app) => {
             users = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
         }
         catch(error) {
-            res.send({ error: ERROR_FTECH_USERS, isSuccess: false });
+            res.send({ error: ERROR_FTECH_USERS, isSuccess: false, users });
         }
 
         res.send({ users, isSuccess: true })

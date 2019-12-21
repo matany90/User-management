@@ -2,6 +2,8 @@
 <div class="container" >
   <v-simple-table class="table">
     <template v-slot:default>
+        <loading :active.sync="isLoading" 
+        :is-full-page="false"></loading>
       <thead>
         <tr :style="{backgroundColor: SECONDARY}" >
           <th class="text-center header-text white--text">Name</th>
@@ -32,9 +34,11 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import FormDialog from './FormDialog.vue';
 import { SECONDARY } from '../utils/colors';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     data: () => ({ SECONDARY }),
@@ -43,15 +47,15 @@ export default {
         this.fetchUsers()
     },
     components: {
-      FormDialog
+      FormDialog,
+      Loading
     },
     //getters
     computed: {
-      users: {
-        get() {
-          return this.$store.state.users;
-        }
-      }
+      ...mapGetters([
+        'users',
+        'isLoading'
+      ])
     },
     //actions
     methods: {

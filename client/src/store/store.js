@@ -6,13 +6,14 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        users: [],
+        users: null,
         isDialogVisible: false,
         id: '',
         name: '',
         email: '',
         phone: '',
-        error: ''
+        error: '',
+        isLoading: true
     },
     getters: {
         users: ({ users }) => ( users ),
@@ -21,6 +22,7 @@ export const store = new Vuex.Store({
         name: ({ name }) => ( name ),
         email: ({ email }) => ( email ),
         phone: ({ phone }) => ( phone ),
+        isLoading: ({ isLoading }) => ( isLoading )
     },
     mutations: {
         addUser: (state, user) => state.users.push(user),
@@ -30,7 +32,8 @@ export const store = new Vuex.Store({
         setEmail: (state, email) => state.email = email,
         setPhone: (state, phone) => state.phone = phone,
         setId: (state, id) => state.id = id,
-        setError: (state, error) => state.error = error
+        setError: (state, error) => state.error = error,
+        setIsLoading: (state, isLoading) => state.isLoading = isLoading
     },
     actions: {
         //ADD USER - post req to API
@@ -52,10 +55,11 @@ export const store = new Vuex.Store({
         },
          //FETCH USERS FROM FIRESTORE - get req to API
         fetchUsers: async ({ commit }) => {
-            const { data } = await axios.get('/api/users');
+            const { data } = await axios.get('/api/users');            
             if (data.isSuccess) {
-                commit('fetchUsers', data.users) 
+                commit('fetchUsers', data.users)
             }  
+            commit('setIsLoading',false)
         },
         //TOGGELE FORM VISABILITY - reset fields if ADD USER FORM, else it's UPDATE USER 
         toggleDialogVisible: ({ commit }, payload) => {
