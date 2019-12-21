@@ -36,18 +36,15 @@ export const store = new Vuex.Store({
         //ADD USER - post req to API
         addUser: async ({ commit }, payload) => {
             const { data } = await axios.post('/api/users/addUser', { user: payload })
-            if (data.isSuccess) {
+            if (data.user) {
                 commit('addUser', data.user);
                 commit('toggleDialogVisible');
-            }
-            else {
-                commit('setError', data.error)
             }
         },
         //UPDATE USER - post req to API
         updateUser: async ({ commit, state }, payload) => {
             const { data } = await axios.post('/api/users/updateUser', { user: payload })
-            if (data.isSuccess) {
+            if (data.user) {
                 const users = state.users.map(user => user.id === data.user.id ? data.user : user);
                 commit('fetchUsers', users)
                 commit('toggleDialogVisible');
@@ -56,7 +53,7 @@ export const store = new Vuex.Store({
          //FETCH USERS FROM FIRESTORE - get req to API
         fetchUsers: async ({ commit }) => {
             const { data } = await axios.get('/api/users');
-            if (data.isSuccess) {
+            if (data.users) {
                 commit('fetchUsers', data.users) 
             }  
         },
@@ -70,14 +67,11 @@ export const store = new Vuex.Store({
         },
         //DELETE USER - post req to API
         deleteUser: async ({ commit, state }, payload) => {
-            const { data: { user, isSuccess, error }} = await axios.post('/api/users/deleteUser', { user: payload })
-            if (isSuccess) {
+            const { data} = await axios.post('/api/users/deleteUser', { user: payload })
+            if (data.user) {
                 //delete user locally - replace deleted user with undefined and than delete undefineds from array
-                const users = state.users.map(el => el.id === user.id ? undefined : el).filter(el => el !== undefined);
+                const users = state.users.map(el => el.id === data.user.id ? undefined : el).filter(el => el !== undefined);
                 commit('fetchUsers', users);
-            }
-            else {
-                commit('setError', error);
             }
         }
     }

@@ -10,19 +10,11 @@ const ERROR_ADD_USER = 'Error adding user!'
 module.exports = (app) => {
     /** FETCH USERS endpoint  **/
     app.get('/api/users', async (req, res) => {
-        let response;
         const snapshot = await db.collection('users').get()
         /* Adding doc-firestore-id to each element
         to filter correctly when deleting/editing */
-        if (snapshot) {
-            const users =  snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            response = { users, isSuccess: true };
-        }
-        else {
-            response = { error: ERROR_MSG, isSuccess: false };
-        }
-
-        res.send(response)
+        const users = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        res.send({ users })
     })
 
     /** ADD USER endpoint **/
@@ -34,13 +26,11 @@ module.exports = (app) => {
             email,
             phone
         })
-        //pull new user
+        //pull new user to assign id to user object
         const doc = await db.collection('users').doc(dbRes.id).get();
-        //check if added successfully
-        const isSuccess = doc.id === dbRes.id;
-        const response = isSuccess ? { user: {...doc.data(), id: doc.id }, isSuccess } : { error: ERROR_ADD_USER, isSuccess }
+        const user = {...doc.data(), id: doc.id }
 
-        res.send(response)
+        res.send({ user })
     })
 
     /** DELETE USER endpoint **/
@@ -48,11 +38,8 @@ module.exports = (app) => {
         const { id } = req.body.user;
         //delete by user id
         await db.collection('users').doc(id).delete();
-        //check if deleted successfully
-        const doc = await db.collection('users').doc(id).get();
-        const response =  doc.exists ? { error: ERROR_MSG, isSuccess: false } : { user: req.body.user, isSuccess: true };
 
-        res.send(response)
+        res.send({ user: req.body.user})
     })
 
     /** UPDATE USER endpoint **/
@@ -60,13 +47,7 @@ module.exports = (app) => {
         const { user } = req.body;
         //update by user id
         await db.collection('users').doc(user.id).update('name', user.name, 'email', user.email, 'phone', user.phone);
-        //pull updated user
-        const doc = await db.collection('users').doc(user.id).get();
-        const updatedUser = doc.exists ? {...doc.data(), id: user.id }: {};
-        //check if updated successfully
-        const isSuccess = _.isEqual(updatedUser, user);
-        const response = isSuccess ? { user: updatedUser, isSuccess } : { error: ERROR_UPDATE_USER, isSuccess }
-
-        res.send(response);
+        
+        res.send({ user });
     })
 }
