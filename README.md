@@ -14,10 +14,10 @@ You can add, edit, and delete users from the application.
 ### Backend:
   * Node.js with Express
     * endpoints:
-        * fetchUsers: returns an array of all users in a collection called 'users' in the firestore
-        * addUser: adds a user to the collection and returns the added user
-        * updateUser: gets a user and updates their fields in collection by id. Returns the user after the update
-        * deleteUser: deletes user from collection and returns deleted user
+        * GET - fetchUsers: returns an array of all users in a collection called 'users' in the firestore
+        * POST - addUser: gets a user and adds it to the collection, and returns the added user
+        * POST - updateUser: gets a user and updates their fields in collection by id. Returns the user after the update
+        * POST - deleteUser: gets a user and deletes it from collection, returns deleted user
   * Firestore DB
 ### Database structure:
 The database structure is structured as follows:
