@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon server/index.js",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "test": "ava"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +17,9 @@
     "firebase-admin": "^8.8.0",
     "lodash": "^4.17.15",
     "nodemon": "^2.0.2"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "axios": "^0.19.0"
   }
 }

@@ -28,7 +28,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="toggleDialogVisible()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="submitForm()" :disabled="isDisable()">Save User</v-btn>
+          <v-btn color="blue darken-1" text @click="submitForm()" :disabled="isButtonDisable()">Save User</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -58,7 +58,7 @@ import { mapActions } from 'vuex';
          return title;
       },
       //check if submit form button need to be disable/enable
-      isDisable() {
+      isButtonDisable() {
         const { name, phone, email } = this.$store.state;
         return ( email === '' || phone === '' || name === '' )
       }

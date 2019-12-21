@@ -4,7 +4,7 @@ import { store } from './store/store';
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
-
+/* Entry point */
 new Vue({
   store,
   vuetify,

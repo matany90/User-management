@@ -23,7 +23,7 @@ require('./routes/usersRoutes')(app);
 
 //Handle Production
 if (process.env.NODE_ENV === 'production') {
-    //client static folder
+    //client static folder (after npm run build in client)
     app.use(express.static(__dirname + '/public/'));
     //single page application
     app.get('*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

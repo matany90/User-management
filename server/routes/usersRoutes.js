@@ -20,7 +20,7 @@ module.exports = (app) => {
         return res.send({ error: ERROR_MSG, isSuccess: false })
     })
 
-    /** ADD USER endpoint  **/
+    /** ADD USER endpoint **/
     app.post('/api/users/addUser', async (req, res) => {
         const { name, email, phone } = req.body.user;
         //add user
@@ -53,7 +53,7 @@ module.exports = (app) => {
         await db.collection('users').doc(user.id).update('name', user.name, 'email', user.email, 'phone', user.phone);
         //pull updated user
         const doc = await db.collection('users').doc(user.id).get();
-        const updatedUser = {...doc.data(), id: user.id };
+        const updatedUser = doc.exists ? {...doc.data(), id: user.id }: {};
         //check if updated successfully
         const isSuccess = _.isEqual(updatedUser, user);
         isSuccess ? res.send({ user: updatedUser, isSuccess }) : res.send({ error: ERROR_UPDATE_USER, isSuccess })

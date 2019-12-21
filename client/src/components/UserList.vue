@@ -32,27 +32,31 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 import FormDialog from './FormDialog.vue';
 
 export default {
     created() {
+      /* fetch users from API */
         this.fetchUsers()
     },
     components: {
       FormDialog
     },
+    //getters
     computed: {
-        ...mapGetters([
-        'users',
-     ])
+      users: {
+        get() {
+          return this.$store.state.users;
+        }
+      }
     },
+    //actions
     methods: {
         ...mapActions([
          'fetchUsers',
          'deleteUser',
-         'toggleDialogVisible',
-         'updateUser'
+         'toggleDialogVisible'
      ]),
     }
 }

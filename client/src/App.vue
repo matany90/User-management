@@ -13,8 +13,8 @@
 
 export default {
   components: {
-    UserList,
-    ToolBar
+    ToolBar,
+    UserList
   },
 };
 </script>
