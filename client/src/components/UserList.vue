@@ -1,25 +1,25 @@
 <template>
-<div :style="{marginLeft: '150px', marginRight: '150px'}">
-  <v-simple-table>
+<div class="container" >
+  <v-simple-table class="table">
     <template v-slot:default>
       <thead>
-        <tr>
-          <th class="text-left">Name</th>
-          <th class="text-left">Email</th>
-          <th class="text-left">Phone</th>
-          <th :style="{width: '200px'}" class="text-left">Edit / Remove</th>
+        <tr class="container-header" >
+          <th class="text-center header-text white--text">Name</th>
+          <th class="text-center header-text white--text">Email</th>
+          <th class="text-center header-text white--text">Phone</th>
+          <th class="text-center header-text editRemove white--text">Edit / Remove</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(user, index) in users" :key="index">
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.phone }}</td>
-          <td>
-            <v-icon :style="{marginRight: '5px'}" @click="toggleDialogVisible(user)">
+          <td class="text-center content-text">{{ user.name }}</td>
+          <td class="text-center content-text">{{ user.email }}</td>
+          <td class="text-center content-text">{{ user.phone }}</td>
+          <td class="text-center icons-container">
+            <v-icon class="edit-icon" @click="toggleDialogVisible(user)">
               mdi-pencil
             </v-icon>
-            <v-icon :style="{marginLeft: '5px'}" @click="deleteUser(user)"
+            <v-icon class="delete-icon" @click="deleteUser(user)"
             >mdi-delete
             </v-icon>
           </td>
@@ -61,5 +61,35 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.container {
+  padding-left: 150px;
+  padding-right: 150px;
+  margin-top: 20px;
+}
+.table {
+   border-radius: 30px;
+}
+.container-header {
+  background-color: #00897b;
+}
+.header-text {
+  font-size: 20px;
+  color: 'red';
+}
+.editRemove {
+width: 200px
+}
+.edit-icon {
+  margin-right: 5px
+}
+.delete-icon {
+  margin-left: 5px
+}
+.content-text {
+  font-size: 16px;
+}
+</style>
 
 

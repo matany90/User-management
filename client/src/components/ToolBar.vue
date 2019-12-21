@@ -1,7 +1,7 @@
 <template>
    <v-app-bar
       app
-      color="primary"
+      color="#4db6ac"
       dark
     >
       <div class="d-flex align-center">

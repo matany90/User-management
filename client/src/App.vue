@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{backgroundColor: '#e0f2f1'}">
     <ToolBar />
     <v-content>
       <UserList />
@@ -18,3 +18,11 @@ export default {
   },
 };
 </script>
+
+<style>
+  * {
+  font-family: 'Montserrat', sans-serif;
+}
+</style>
+
+
