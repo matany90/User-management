@@ -21,7 +21,8 @@ The database structure is structured as follows:
           * Name
           * Email
           * Phone
-  Example:
+   
+Example:![picture alt](https://imgur.com/Ah6RIeY.png)
     
   
   
