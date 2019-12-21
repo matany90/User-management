@@ -6,14 +6,14 @@ Users are identified by the fields: name, email and phone.
 You can add, edit, and delete users from the application.
 
 
-##Tech-stack:
-###Frontend:
+## Tech-stack:
+### Frontend:
   * Vue.js Framework
   * State management: VueX
   * UI library: Vuetify
-###Backend:
+### Backend:
   * Node.js with Express
-###Database:
+### Database:
   * Firestore DB
   DB structure:
   The database structure is structured as follows:
