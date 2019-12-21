@@ -39,5 +39,14 @@ This is the main reason I chose this database architecture
 Using the vue.config.js (located at client folder) file, the client's build-production folder is created in the server folder.
 In this way, the server is stored in heroku and can load the client according to the path
 
-
+### Installation instructions: DEV-MODE
+To run the project locally, after the clone has run
+In root folder:
+#### npm install
+#### npm run server 
+(server runs on port 5000)
+In client folder:
+#### npm install
+#### npm run client
+(client runs on port 8080)
   
