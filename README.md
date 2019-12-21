@@ -33,6 +33,7 @@ Example:![picture alt](https://imgur.com/Ah6RIeY.png)
 In addition, when client-side reaches the fetchUsers endpoint, the response will be an **array of user objects that also includes id property for each user (the unique id key from firestore).**
 This way, when client-side reaches the updateUser/deleteUser endpoints, we can **compare the id we received from the client-side with all the keys in the firestore - so we can easily update/delete a user.**
 This is the main reason I chose this database architecture
-  
-  
+### Hosting
+
+
   
