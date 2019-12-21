@@ -1,7 +1,7 @@
 # Rele-Ai assignment - My implementation
 
 ## Overview:
-The application is a user pool management tool.
+The application is a users management tool.
 Users are identified by the fields: name, email and phone.
 You can add, edit, and delete users from the application.
 
