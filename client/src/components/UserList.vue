@@ -3,7 +3,7 @@
   <v-simple-table class="table">
     <template v-slot:default>
       <thead>
-        <tr class="container-header" >
+        <tr :style="{backgroundColor: SECONDARY}" >
           <th class="text-center header-text white--text">Name</th>
           <th class="text-center header-text white--text">Email</th>
           <th class="text-center header-text white--text">Phone</th>
@@ -34,8 +34,10 @@
 <script>
 import { mapActions } from 'vuex';
 import FormDialog from './FormDialog.vue';
+import { SECONDARY } from '../utils/colors';
 
 export default {
+    data: () => ({ SECONDARY }),
     created() {
       /* fetch users from API */
         this.fetchUsers()
@@ -70,9 +72,6 @@ export default {
 }
 .table {
    border-radius: 30px;
-}
-.container-header {
-  background-color: #00897b;
 }
 .header-text {
   font-size: 20px;

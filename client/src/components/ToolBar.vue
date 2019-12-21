@@ -1,12 +1,13 @@
 <template>
    <v-app-bar
       app
-      color="#4db6ac"
+      class="toolbar"
+      :style="{backgroundColor: PRIMARY}"
       dark
     >
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="matan's logo"
           class="shrink mr-2"
           contain
           :src="require('../assets/logo.png')"
@@ -31,9 +32,11 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { PRIMARY } from '../utils/colors';
 
 //toggleDialogVisible open/close form
 export default {
+  data: () => ({ PRIMARY }),
     methods: {
         ...mapActions([
          'toggleDialogVisible'
@@ -42,7 +45,5 @@ export default {
 }
 </script>
 
-<style scoped>
 
-</style>
 
