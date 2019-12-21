@@ -34,7 +34,7 @@ In addition, when client-side reaches the fetchUsers endpoint, the response will
 This way, when client-side reaches the updateUser/deleteUser endpoints, we can **compare the id we received from the client-side with all the keys in the firestore - so we can easily update/delete a user.**
 This is the main reason I chose this database architecture
 ### Hosting
-I used Heroku.
+* Deployment to Heroku.
 The logic works this way:
 Using the vue.config.js (located at client folder) file, the build-to-client production folder is created within the server folder.
 In this way, the server is stored in heroku and can load the client according to the path
