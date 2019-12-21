@@ -1,9 +1,9 @@
 <template>
 <div class="container" >
+    <loading :active.sync="isLoading" 
+      :is-full-page="false"></loading>
   <v-simple-table class="table">
     <template v-slot:default>
-        <loading :active.sync="isLoading" 
-        :is-full-page="false"></loading>
       <thead>
         <tr :style="{backgroundColor: SECONDARY}" >
           <th class="text-center header-text white--text">Name</th>
@@ -76,6 +76,10 @@ export default {
 }
 .table {
    border-radius: 30px;
+    animation-name: moveInBottom;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    backface-visibility: hidden;
 }
 .header-text {
   font-size: 20px;
@@ -92,6 +96,16 @@ width: 200px
 }
 .content-text {
   font-size: 16px;
+}
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px)
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0)
+    }
 }
 </style>
 
