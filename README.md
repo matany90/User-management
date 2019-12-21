@@ -20,7 +20,7 @@ You can add, edit, and delete users from the application.
         * POST - **updateUser**: gets a user and updates their fields in collection by id. Returns the user after the update
         * POST - **deleteUser**: gets a user and deletes it from collection, returns deleted user
   * Firestore DB
-  * Unit Test: AVAJS library. Each endpoint is checked. The files are in the path: server/tests/test.index.js
+  * Unit Test: AVAJS library. Each endpoint is checked. The files located at: server/tests/test.index.js
 ### Database structure:
 The database structure is structured as follows:
   * Users Collection
