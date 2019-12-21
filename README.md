@@ -36,7 +36,7 @@ This is the main reason I chose this database architecture
 ### Hosting
 * Deployed to Heroku:  https://rele-ai-project-matan.herokuapp.com/
 #### The logic works this way:
-Using the vue.config.js (located at client folder) file, the build-production folder is created within the server folder.
+Using the vue.config.js (located at client folder) file, the client's build-production folder is created within the server folder.
 In this way, the server is stored in heroku and can load the client according to the path
 
 
