@@ -19,9 +19,9 @@ You can add, edit, and delete users from the application.
   The database structure is structured as follows:
   * Users Collection
       * User document identified by unique id
-            * Name
-            * Email
-            * Phone
+          * Name
+          * Email
+          * Phone
   Example:
     
   
