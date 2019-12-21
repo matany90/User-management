@@ -14,7 +14,7 @@
           transition="scale-transition"
           width="60"
         />
-        <h2>Matan's User list</h2>
+        <h2>Matan's User management</h2>
       </div>
 
       <v-spacer></v-spacer>

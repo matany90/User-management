@@ -62,11 +62,11 @@ export const store = new Vuex.Store({
             commit('setIsLoading',false)
         },
         //TOGGELE FORM VISABILITY - reset fields if ADD USER FORM, else it's UPDATE USER 
-        toggleDialogVisible: ({ commit }, payload) => {
-            commit('setName', payload ? payload.name : '')
-            commit('setEmail', payload ? payload.email : '')
-            commit('setPhone', payload ? payload.phone: '')
-            commit('setId', payload ? payload.id: '')
+        toggleDialogVisible: ({ commit }, user) => {
+            commit('setName', user ? user.name : '')
+            commit('setEmail', user ? user.email : '')
+            commit('setPhone', user ? user.phone: '')
+            commit('setId', user ? user.id: '')
             commit('toggleDialogVisible');
         },
         //DELETE USER - post req to API
