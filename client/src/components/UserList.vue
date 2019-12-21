@@ -70,8 +70,8 @@ export default {
 
 <style scoped>
 .container {
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 10%;
+  padding-right: 10%;
   margin-top: 20px;
 }
 .table {
