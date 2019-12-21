@@ -51,6 +51,9 @@ To run the project locally, first clone the project and then:
 #### - npm run client
 (client runs on port 8080)
 
+#### NOTE: 
+Docker was not used due to lack of time.
+
 ## UI:
 ### Users List:
 ![picture alt](https://imgur.com/cI9Evea.png)
