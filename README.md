@@ -15,8 +15,8 @@ You can add, edit, and delete users from the application.
   * Node.js with Express
 ### Database:
   * Firestore DB
-  DB structure:
-  The database structure is structured as follows:
+DB structure:
+The database structure is structured as follows:
   * Users Collection
       * User document identified by unique id
           * Name
