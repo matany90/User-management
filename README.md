@@ -51,7 +51,7 @@ In client folder:
 #### npm run client
 (client runs on port 8080)
 
-## From the App:
+## UI:
 #### Users List:
 ![picture alt](https://imgur.com/cI9Evea.png)
 #### Add User:
