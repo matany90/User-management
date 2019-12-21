@@ -1,25 +1,21 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="isDialogVisible" persistent max-width="600px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">{{loadTitle()}}</span>
+      <v-card class="container" :style="{backgroundColor: BACKGROUND}">
+        <v-card-title class="justify-center">
+          <span :style="{color: PRIMARY, fontSize: '30px', fontWeight: 800}">{{loadTitle()}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field label="Name*" required v-model="name"></v-text-field>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field label="Name*" required v-model="name" :color="PRIMARY"></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  label="Phone*"
-                  required
-                  v-model="phone"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="6">
+                <v-text-field label="Phone*" required v-model="phone" :color="PRIMARY"></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Email*" required v-model="email"></v-text-field>
+                <v-text-field label="Email*" required v-model="email" :color="PRIMARY"></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -27,8 +23,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="toggleDialogVisible()">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="submitForm()" :disabled="isButtonDisable()">Save User</v-btn>
+          <v-btn :color="PRIMARY" text @click="toggleDialogVisible()">Cancel</v-btn>
+          <v-btn :color="PRIMARY" text @click="submitForm()" :disabled="isButtonDisable()">Save User</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -37,7 +33,9 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { BACKGROUND, PRIMARY } from '../utils/colors'
   export default {
+    data: () => ({ BACKGROUND, PRIMARY }),
     methods: {
     ...mapActions([
         'toggleDialogVisible',
@@ -105,3 +103,7 @@ import { mapActions } from 'vuex';
     },
   }
 </script>
+
+<style scoped>
+
+</style>

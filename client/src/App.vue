@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="{backgroundColor: '#e0f2f1'}">
+  <v-app :style="{backgroundColor: BACKGROUND}">
     <ToolBar />
     <v-content>
       <UserList />
@@ -10,8 +10,10 @@
 <script>
  import UserList from './components/UserList.vue';
  import ToolBar from './components/ToolBar.vue';
+ import { BACKGROUND } from './utils/colors';
 
 export default {
+  data: () => ({ BACKGROUND }),
   components: {
     ToolBar,
     UserList
