@@ -40,7 +40,7 @@ Using the vue.config.js (located at client folder) file, the client's build-prod
 In this way, the server is stored in heroku and can load the client according to the path
 
 ### Installation instructions: DEV-MODE
-To run the project locally, after the clone has run
+To run the project locally, first clone the project and then:
 In root folder:
 #### npm install
 #### npm run server 
