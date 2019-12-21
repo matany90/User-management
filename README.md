@@ -4,6 +4,7 @@
 The application is a users management tool.
 Users are identified by the fields: name, email and phone.
 You can add, edit, and delete users from the application.
+Check-out deployment link:  https://rele-ai-project-matan.herokuapp.com/
 
 
 ## Tech-stack:
