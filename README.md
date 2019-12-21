@@ -13,9 +13,8 @@ You can add, edit, and delete users from the application.
   * UI library: Vuetify
 ### Backend:
   * Node.js with Express
-### Database:
   * Firestore DB
-DB structure:
+### Database structure:
 The database structure is structured as follows:
   * Users Collection
       * User document identified by unique id
