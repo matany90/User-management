@@ -52,11 +52,11 @@ In client folder:
 (client runs on port 8080)
 
 ## UI:
-#### Users List:
+### Users List:
 ![picture alt](https://imgur.com/cI9Evea.png)
-#### Add User:
+### Add User:
 ![picture alt](https://imgur.com/Q1cjQqY.png)
-#### Edit User:
+### Edit User:
 ![picture alt](https://imgur.com/DX4xrM4.png)
 
 
