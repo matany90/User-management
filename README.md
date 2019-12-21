@@ -17,11 +17,11 @@ You can add, edit, and delete users from the application.
   * Firestore DB
   DB structure:
   The database structure is structured as follows:
-  *Users Collection
-      *User document identified by unique id
-            *Name
-            *Email
-            *Phone
+  * Users Collection
+      * User document identified by unique id
+            * Name
+            * Email
+            * Phone
   Example:
     
   
