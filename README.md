@@ -46,11 +46,17 @@ To run the project locally, first clone the project and then:
 ``` 
  npm install 
  ```
-```npm run server ```
+```
+npm run server 
+```
 (server runs on port 5000)
 ### In client folder:
-``` npm install ```
-``` npm run client ```
+``` 
+npm install 
+```
+``` 
+npm run client 
+```
 (client runs on port 8080)
 
 ## UI:
