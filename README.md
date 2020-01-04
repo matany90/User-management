@@ -43,12 +43,12 @@ In this way, the server is stored in heroku and can load the client according to
 ## Installation instructions: DEV-MODE
 To run the project locally, first clone the project and then:
 ### In root folder:
-#### - npm install
-#### - npm run server 
+``` npm install ```
+```npm run server ```
 (server runs on port 5000)
 ### In client folder:
-#### - npm install
-#### - npm run client
+``` npm install ```
+``` npm run client ```
 (client runs on port 8080)
 
 ## UI:
